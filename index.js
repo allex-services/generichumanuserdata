@@ -2,10 +2,10 @@ function createServicePack(execlib) {
   'use strict';
   return {
     service: {
-      dependencies: ['allex:genericuserdata']
+      dependencies: ['allex_genericuserdataservice']
     },
     sinkmap: {
-      dependencies: ['allex:genericuserdata']
+      dependencies: ['allex_genericuserdataservice']
     }, /*
     tasks: {
       dependencies: []
