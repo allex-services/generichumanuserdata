@@ -5,7 +5,8 @@ function createGenericHumanUserDataService(execlib, ParentService) {
   function factoryCreator(parentFactory) {
     return {
       'service': require('./users/serviceusercreator')(execlib, parentFactory.get('service')),
-      'user': require('./users/usercreator')(execlib, parentFactory.get('user')) 
+      'user': require('./users/usercreator')(execlib, parentFactory.get('user')),
+      'crypto': parentFactory.get('crypto')
     };
   }
 

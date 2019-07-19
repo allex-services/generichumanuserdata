@@ -1,25 +1,13 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-ALLEX.execSuite.registry.registerClientSide('allex_generichumanuserdataservice',require('./sinkmapcreator')(ALLEX, ALLEX.execSuite.registry.getClientSide('allex_genericuserdataservice')));
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+ALLEX.execSuite.registry.registerClientSide('allex_generichumanuserdataservice',require('./websinkmapcreator')(ALLEX, ALLEX.execSuite.registry.getClientSide('allex_genericuserdataservice')));
 
-},{"./sinkmapcreator":4}],2:[function(require,module,exports){
+},{"./websinkmapcreator":9}],2:[function(require,module,exports){
 module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
 },{"dup":2}],4:[function(require,module,exports){
-function sinkMapCreator(execlib, ParentSinkMap) {
-  'use strict';
-  var sinkmap = new (execlib.lib.Map);
-  sinkmap.add('service', require('./sinks/servicesinkcreator')(execlib, ParentSinkMap.get('service')));
-  sinkmap.add('user', require('./sinks/usersinkcreator')(execlib, ParentSinkMap.get('user')));
-  
-  return sinkmap;
-}
-
-module.exports = sinkMapCreator;
-
-},{"./sinks/servicesinkcreator":5,"./sinks/usersinkcreator":6}],5:[function(require,module,exports){
 function createServiceSink(execlib, ParentSink) {
   'use strict';
   function ServiceSink(prophash, client) {
@@ -35,7 +23,7 @@ function createServiceSink(execlib, ParentSink) {
 
 module.exports = createServiceSink;
 
-},{"../methoddescriptors/serviceuser":2,"../storagedescriptor":7,"../visiblefields/serviceuser":8}],6:[function(require,module,exports){
+},{"../methoddescriptors/serviceuser":2,"../storagedescriptor":6,"../visiblefields/serviceuser":7}],5:[function(require,module,exports){
 function createUserSink(execlib, ParentSink) {
   'use strict';
   function UserSink(prophash, client) {
@@ -51,7 +39,7 @@ function createUserSink(execlib, ParentSink) {
 
 module.exports = createUserSink;
 
-},{"../methoddescriptors/user":3,"../storagedescriptor":7,"../visiblefields/user":9}],7:[function(require,module,exports){
+},{"../methoddescriptors/user":3,"../storagedescriptor":6,"../visiblefields/user":8}],6:[function(require,module,exports){
 module.exports = {
   record:{
     fields:[{
@@ -61,10 +49,22 @@ module.exports = {
   }
 };
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = [];
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = ['secondphaseauth'];
 
-},{}]},{},[1]);
+},{}],9:[function(require,module,exports){
+function webSinkMapCreator(execlib, ParentSinkMap) {
+  'use strict';
+  var sinkmap = new (execlib.lib.Map);
+  sinkmap.add('service', require('./sinks/servicesinkcreator')(execlib, ParentSinkMap.get('service')));
+  sinkmap.add('user', require('./sinks/usersinkcreator')(execlib, ParentSinkMap.get('user')));
+  
+  return sinkmap;
+}
+
+module.exports = webSinkMapCreator;
+
+},{"./sinks/servicesinkcreator":4,"./sinks/usersinkcreator":5}]},{},[1]);
